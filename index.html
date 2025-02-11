@@ -1,22 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图书介绍</title>
+  <style>
+    /* 设置基础样式，确保内容居中、字体清晰 */
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    /* 最大宽度 600px 的容器，居中显示内容 */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    /* 图书卡片的样式 */
+    .book-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1rem;
+      padding: 1rem;
+    }
+
+    /* 书籍封面图片自适应宽度 */
+    .book-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    /* 书籍标题样式 */
+    .book-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    /* 书籍简介文本样式 */
+    .book-description {
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    /* 小屏幕优化：字体稍大，间距稍宽 */
+    @media (max-width: 480px) {
+      body {
+        font-size: 18px;
+      }
+      .book-title {
+        font-size: 1.5rem;
+      }
+      .book-description {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div id="app"></div>
-  <script>
-    window.$docsify = {
-      name: '',
-      repo: ''
-    }
-  </script>
-  <!-- Docsify v4 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <div class="container">
+    <!-- 示例书籍卡片 -->
+    <div class="book-card">
+      <img src="book-cover.jpg" alt="书籍封面">
+      <div class="book-title">书名示例</div>
+      <div class="book-description">这是一本关于某某内容的精彩书籍。</div>
+    </div>
+
+    <div class="book-card">
+      <img src="book-cover2.jpg" alt="书籍封面">
+      <div class="book-title">另一书名</div>
+      <div class="book-description">这本书详细讲解了某某领域的知识。</div>
+    </div>
+  </div>
 </body>
 </html>
