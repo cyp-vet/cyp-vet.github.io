@@ -5,36 +5,158 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>兽医宇宙</title>
   <style>
-    /* 基础样式：让文本居中显示，字体大小适中 */
     body {
       font-family: Arial, sans-serif;
-      line-height: 1.6;
       margin: 0;
       padding: 0;
       background-color: #f5f5f5;
     }
+
     .cover {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
-      height: calc(100vw / 16); /* 让高度等于宽度的1/16 */
-      background: url('兽医2.jpg') center/cover no-repeat;
-      position: relative; /* 滚动效果*/
-      top: 0;
-      left: 0;
-      z-index: -1;
+      background-color: #f5f5f5;
+      padding: 20px 0;
     }
-    .content {
-      text-align: center;
+
+    .cover img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+    }
+
+    .new-box {
+      width: 95%;
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 5px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      display: flex; /* 使用 Flexbox 布局 */
+
+    }
+
+    .new-box-left {
+      flex: 0 0 150px; /* 左侧固定宽度 */
+      height: 100px; /* 固定高度 */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: -50px; /* 增加右侧间距 */
+    }
+
+    .new-box-left img {
+      width: 50%;
+      height: 100%;
+      object-fit: cover; /* 确保按比例填充区域 */
+      border-radius: 4px; /* 添加一些视觉上的圆角 */
+      margin-right: 80px; /* 增加右侧间距 */
+    }
+
+    .new-box-right {
+      flex: 1; /* 右侧内容区域占满剩余空间 */
+      text-align: left;
+    }
+
+    .new-box-right p {
       font-size: 18px;
-      padding: 10px;
-      margin-top: 320px; /* 确保内容不与封面重叠 */
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <div class="cover"></div>
-  <div class="content">
-    <p>这是第一行文字</p>
-    <p>这是第二行文字</p>
+  <!-- 原有图片滑动区域 -->
+  <div class="cover">
+    <img id="slider" src="兽医2.jpg" alt="图片">
   </div>
+
+  <!-- 新增的框 -->
+  <div class="new-box">
+    <!-- 左侧封面图区域 -->
+    <div class="new-box-left">
+      <img src="图片1.png" alt="封面图">
+    </div>
+    <!-- 右侧内容 -->
+    <div class="new-box-right">
+      <p>小动物内科学第六版</p>
+      <p>复制百度网盘试看链接</p>
+    </div>
+  </div>
+    <!-- 新增的框 -->
+  <div class="new-box">
+    <!-- 左侧封面图区域 -->
+    <div class="new-box-left">
+      <img src="图片1.png" alt="封面图">
+    </div>
+    <!-- 右侧内容 -->
+    <div class="new-box-right">
+      <p>小动物内科学第六版</p>
+      <p>复制百度网盘试看链接</p>
+    </div>
+  </div>
+    <!-- 新增的框 -->
+  <div class="new-box">
+    <!-- 左侧封面图区域 -->
+    <div class="new-box-left">
+      <img src="图片1.png" alt="封面图">
+    </div>
+    <!-- 右侧内容 -->
+    <div class="new-box-right">
+      <p>小动物内科学第六版</p>
+      <p>复制百度网盘试看链接</p>
+    </div>
+  </div>
+    <!-- 新增的框 -->
+  <div class="new-box">
+    <!-- 左侧封面图区域 -->
+    <div class="new-box-left">
+      <img src="图片1.png" alt="封面图">
+    </div>
+    <!-- 右侧内容 -->
+    <div class="new-box-right">
+      <p>小动物内科学第六版</p>
+      <p>复制百度网盘试看链接</p>
+    </div>
+  </div>
+    <!-- 新增的框 -->
+  <div class="new-box">
+    <!-- 左侧封面图区域 -->
+    <div class="new-box-left">
+      <img src="图片1.png" alt="封面图">
+    </div>
+    <!-- 右侧内容 -->
+    <div class="new-box-right">
+      <p>小动物内科学第六版</p>
+      <p>复制百度网盘试看链接</p>
+    </div>
+  </div>
+    <!-- 新增的框 -->
+  <div class="new-box">
+    <!-- 左侧封面图区域 -->
+    <div class="new-box-left">
+      <img src="图片1.png" alt="封面图">
+    </div>
+    <!-- 右侧内容 -->
+    <div class="new-box-right">
+      <p>小动物内科学第六版</p>
+      <p>复制百度网盘试看链接</p>
+    </div>
+  </div>
+
+  <script>
+    // 图片数组
+    const images = ["兽医2.jpg", "3.jpg"];
+    let currentIndex = 0;
+
+    // 每3秒切换图片
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % images.length; // 切换到下一张图片
+      document.getElementById("slider").src = images[currentIndex]; // 修改图片src
+    }, 3000);
+  </script>
 </body>
 </html>
