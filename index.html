@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>兽医宇宙</title>
   <style>
+    /* 样式部分 */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -18,53 +19,65 @@
       align-items: center;
       width: 100%;
       background-color: #f5f5f5;
-      padding: 20px 0;
+      padding: 5px 0;
+      margin-bottom: 40px;
     }
 
     .cover img {
       max-width: 100%;
-      max-height: 80vh;
+      max-height: 100vh;
       object-fit: contain;
     }
 
     .new-box {
       width: 95%;
       max-width: 800px;
-      margin: 20px auto;
-      padding: 5px;
+      margin: 0px auto 20px; /* 保证每个框之间有间隔 */
+      padding: 6px;
       background-color: #ffffff;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       border: 1px solid #ddd;
       border-radius: 8px;
-      display: flex; /* 使用 Flexbox 布局 */
-
+      display: flex;
+      height: 80px; /* 统一框的高度 */
+      align-items: center; /* 确保框内内容垂直居中 */
     }
 
     .new-box-left {
-      flex: 0 0 150px; /* 左侧固定宽度 */
-      height: 100px; /* 固定高度 */
+      flex: 0 0 150px;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: -50px; /* 增加右侧间距 */
+      margin-right: 10px;
     }
 
     .new-box-left img {
-      width: 50%;
-      height: 100%;
-      object-fit: cover; /* 确保按比例填充区域 */
-      border-radius: 4px; /* 添加一些视觉上的圆角 */
-      margin-right: 80px; /* 增加右侧间距 */
+      width: 45%; /* 让图片的宽度占满父元素 */
+      height: 100%; /* 图片的高度占满父元素 */
+      object-fit: cover;
+      border-radius: 1px;
+      margin-left: 0; /* 取消负值偏移，确保图片居中 */
     }
 
     .new-box-right {
-      flex: 1; /* 右侧内容区域占满剩余空间 */
+      flex: 1;
       text-align: left;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* 确保文本在右侧垂直居中 */
     }
 
     .new-box-right p {
       font-size: 18px;
       color: #333;
+      margin: 0; /* 清除默认的 margin 以确保内容紧凑 */
+    }
+
+    .new-box-right p:last-of-type {
+      cursor: pointer;
+      color: blue;
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -74,89 +87,39 @@
     <img id="slider" src="兽医2.jpg" alt="图片">
   </div>
 
-  <!-- 新增的框 -->
-  <div class="new-box">
-    <!-- 左侧封面图区域 -->
-    <div class="new-box-left">
-      <img src="图片1.png" alt="封面图">
-    </div>
-    <!-- 右侧内容 -->
-    <div class="new-box-right">
-      <p>小动物内科学第六版</p>
-      <p>复制百度网盘试看链接</p>
-    </div>
-  </div>
-    <!-- 新增的框 -->
-  <div class="new-box">
-    <!-- 左侧封面图区域 -->
-    <div class="new-box-left">
-      <img src="图片1.png" alt="封面图">
-    </div>
-    <!-- 右侧内容 -->
-    <div class="new-box-right">
-      <p>小动物内科学第六版</p>
-      <p>复制百度网盘试看链接</p>
-    </div>
-  </div>
-    <!-- 新增的框 -->
-  <div class="new-box">
-    <!-- 左侧封面图区域 -->
-    <div class="new-box-left">
-      <img src="图片1.png" alt="封面图">
-    </div>
-    <!-- 右侧内容 -->
-    <div class="new-box-right">
-      <p>小动物内科学第六版</p>
-      <p>复制百度网盘试看链接</p>
-    </div>
-  </div>
-    <!-- 新增的框 -->
-  <div class="new-box">
-    <!-- 左侧封面图区域 -->
-    <div class="new-box-left">
-      <img src="图片1.png" alt="封面图">
-    </div>
-    <!-- 右侧内容 -->
-    <div class="new-box-right">
-      <p>小动物内科学第六版</p>
-      <p>复制百度网盘试看链接</p>
-    </div>
-  </div>
-    <!-- 新增的框 -->
-  <div class="new-box">
-    <!-- 左侧封面图区域 -->
-    <div class="new-box-left">
-      <img src="图片1.png" alt="封面图">
-    </div>
-    <!-- 右侧内容 -->
-    <div class="new-box-right">
-      <p>小动物内科学第六版</p>
-      <p>复制百度网盘试看链接</p>
-    </div>
-  </div>
-    <!-- 新增的框 -->
-  <div class="new-box">
-    <!-- 左侧封面图区域 -->
-    <div class="new-box-left">
-      <img src="图片1.png" alt="封面图">
-    </div>
-    <!-- 右侧内容 -->
-    <div class="new-box-right">
-      <p>小动物内科学第六版</p>
-      <p>复制百度网盘试看链接</p>
-    </div>
-  </div>
+  <!-- 数据内容插入的位置 -->
+  <div id="content"></div>
 
+  <!-- 引入 books.js -->
+  <script src="books.js"></script>
+
+  <!-- 动态生成内容 -->
   <script>
-    // 图片数组
-    const images = ["兽医2.jpg", "3.jpg"];
-    let currentIndex = 0;
+    // 动态生成内容
+    const contentDiv = document.getElementById("content");
 
-    // 每3秒切换图片
-    setInterval(() => {
-      currentIndex = (currentIndex + 1) % images.length; // 切换到下一张图片
-      document.getElementById("slider").src = images[currentIndex]; // 修改图片src
-    }, 3000);
+    books.forEach(book => {
+      const box = document.createElement("div");
+      box.className = "new-box";
+      box.innerHTML = `
+        <div class="new-box-left">
+          <img src="pic/${book.image}" alt="封面图">
+        </div>
+        <div class="new-box-right">
+          <p>${book.title}</p>
+          <p>编号：${book.number}</p> <!-- 这里是你需要添加的编号行 -->
+          <p onclick="copyToClipboard('${book.baiduLink}')">复制百度网盘试看链接</p>
+        </div>
+      `;
+      contentDiv.appendChild(box);
+    });
+
+    // 复制链接到剪贴板
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text)
+        .then(() => alert("已复制到剪贴板！"))
+        .catch(err => console.error("复制失败：", err));
+    }
   </script>
 </body>
 </html>
