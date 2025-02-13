@@ -29,18 +29,46 @@
       object-fit: contain;
     }
 
+    /* 分类框位置 */
+    .filter-container {
+      padding: 10px;
+      text-align: left;
+      margin-bottom: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 2px 5px rgba(00, 0, 0, 0.1);
+    }
+
+    /* 分类框 */
+    .filter-container select {
+      padding: 10px;
+      font-size: 16px;
+      width: 140px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      margin-right: 10px; /* 在两个下拉框之间加点间距 */
+    }
+
     .new-box {
       width: 95%;
       max-width: 800px;
-      margin: 0px auto 20px; /* 保证每个框之间有间隔 */
+      margin: 0px auto 1px;
       padding: 6px;
       background-color: #ffffff;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       border: 1px solid #ddd;
       border-radius: 8px;
       display: flex;
-      height: 80px; /* 统一框的高度 */
-      align-items: center; /* 确保框内内容垂直居中 */
+      height: 90px;
+      align-items: center;
+    }
+
+    .title-container {
+      position: relative;
+      width: 100%;
+      height: 55px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
     }
 
     .new-box-left {
@@ -49,15 +77,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-right: 10px;
+      margin-right: -40px;
     }
 
     .new-box-left img {
-      width: 45%; /* 让图片的宽度占满父元素 */
-      height: 100%; /* 图片的高度占满父元素 */
+      width: 45%;
+      height: 110%;
       object-fit: cover;
       border-radius: 1px;
-      margin-left: 0; /* 取消负值偏移，确保图片居中 */
+      margin-left: 0;
+      margin-right: 60px;
     }
 
     .new-box-right {
@@ -65,19 +94,66 @@
       text-align: left;
       display: flex;
       flex-direction: column;
-      justify-content: center; /* 确保文本在右侧垂直居中 */
+      justify-content: center;
+    }
+
+    .new-box-right .title {
+      font-size: 15px;
+      margin-bottom: -21px;
+      width: 100%;
+      max-width: 110%;
+      text-decoration: none !important;
+      color: #333 !important;
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+      pointer-events: none;
+      white-space: normal;
+      word-wrap: break-word;
+    }
+
+    .new-box-right .info-line {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+      height: 50px;
+      overflow: hidden;
     }
 
     .new-box-right p {
       font-size: 18px;
       color: #333;
-      margin: 0; /* 清除默认的 margin 以确保内容紧凑 */
+      margin: 0;
+      display: inline-block;
+      margin-right: 10px;
     }
 
     .new-box-right p:last-of-type {
       cursor: pointer;
       color: blue;
       text-decoration: underline;
+    }
+
+    /* 分页样式 */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .pagination button {
+      padding: 8px 16px;
+      margin: 0 5px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #f1f1f1;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .pagination button:disabled {
+      cursor: not-allowed;
+      background-color: #e0e0e0;
     }
   </style>
 </head>
@@ -87,39 +163,131 @@
     <img id="slider" src="兽医2.jpg" alt="图片">
   </div>
 
+  <!-- 筛选类别的下拉框 -->
+  <div class="filter-container">
+    <!-- 分类筛选 -->
+    <select id="categorySelect" onchange="filterBooks()">
+      <option value="all">全部书籍</option>
+      <option value="基础兽医学">基础兽医学</option>
+      <option value="临床兽医学">临床兽医学</option>
+      <option value="兽医诊断与实验技术">兽医诊断与实验技术</option>
+      <option value="公共卫生与食品安全">公共卫生与食品安全</option>
+      <option value="兽医流行病学与传染病">兽医流行病学与传染病</option>
+      <option value="兽医营养与饲料">兽医营养与饲料</option>
+      <option value="中兽医学">中兽医学</option>
+      <option value="野生动物与实验动物医学">野生动物与实验动物医学</option>
+      <option value="兽医管理与法律">兽医管理与法律</option>
+      <option value="异宠医学">异宠医学</option>
+    </select>
+
+    <!-- 语言筛选 -->
+    <select id="languageSelect" onchange="filterBooks()">
+      <option value="all">全部语言</option>
+      <option value="简体中文">简体中文</option>
+      <option value="繁体中文">繁体中文</option>
+      <option value="English">English</option>
+    </select>
+
+    <!-- 排序筛选 -->
+    <select id="sortSelect" onchange="filterBooks()">
+      <option value="default">默认排序</option>
+      <option value="recent">最近更新</option>
+    </select>
+  </div>
+
   <!-- 数据内容插入的位置 -->
   <div id="content"></div>
+
+  <!-- 分页按钮 -->
+  <div class="pagination">
+    <button id="firstPage" onclick="goToPage(1)" disabled>首页</button>
+    <button id="prevPage" onclick="goToPage(currentPage - 1)" disabled>上一页</button>
+    <button id="nextPage" onclick="goToPage(currentPage + 1)" disabled>下一页</button>
+    <button id="lastPage" onclick="goToPage(totalPages)" disabled>尾页</button>
+  </div>
 
   <!-- 引入 books.js -->
   <script src="books.js"></script>
 
   <!-- 动态生成内容 -->
   <script>
-    // 动态生成内容
     const contentDiv = document.getElementById("content");
 
-    books.forEach(book => {
-      const box = document.createElement("div");
-      box.className = "new-box";
-      box.innerHTML = `
-        <div class="new-box-left">
-          <img src="pic/${book.image}" alt="封面图">
-        </div>
-        <div class="new-box-right">
-          <p>${book.title}</p>
-          <p>编号：${book.number}</p> <!-- 这里是你需要添加的编号行 -->
-          <p onclick="copyToClipboard('${book.baiduLink}')">复制百度网盘试看链接</p>
-        </div>
-      `;
-      contentDiv.appendChild(box);
-    });
+    let currentPage = 1;
+    const itemsPerPage = 20; // 每页显示20本书
 
-    // 复制链接到剪贴板
-    function copyToClipboard(text) {
-      navigator.clipboard.writeText(text)
-        .then(() => alert("已复制到剪贴板！"))
-        .catch(err => console.error("复制失败：", err));
+    // 筛选书籍函数
+    function filterBooks() {
+      const selectedCategory = document.getElementById("categorySelect").value;
+      const selectedLanguage = document.getElementById("languageSelect").value;
+      const selectedSort = document.getElementById("sortSelect").value;
+
+      // 根据选择的类别和语言进行筛选
+      let filteredBooks = books.filter(book => {
+        const categoryMatch = selectedCategory === "all" || book.category === selectedCategory;
+        const languageMatch = selectedLanguage === "all" || book.language === selectedLanguage;
+        return categoryMatch && languageMatch;
+      });
+
+      // 根据排序选项进行排序
+      if (selectedSort === "recent") {
+        filteredBooks = filteredBooks.sort((a, b) => b.date - a.date); // 按日期降序排序
+      }
+
+      // 更新分页信息
+      totalPages = Math.ceil(filteredBooks.length / itemsPerPage);
+      showPage(currentPage, filteredBooks);
     }
+
+    // 渲染书籍的函数
+    function showPage(page, filteredBooks) {
+      contentDiv.innerHTML = ''; // 清空现有内容
+
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = page * itemsPerPage;
+
+      const booksToDisplay = filteredBooks.slice(startIndex, endIndex);
+
+      booksToDisplay.forEach(book => {
+        const box = document.createElement("div");
+        box.classList.add("new-box");
+
+        box.innerHTML = `
+          <div class="new-box-left">
+            <img src="pic/${book.image}" alt="封面图">
+          </div>
+          <div class="new-box-right">
+            <div class="title-container">
+              <p class="title">${book.title}</p>
+            </div>
+            <div class="info-line">
+              <p style="margin-right: 43px;">编号：${book.number}</p>
+              <p onclick="copyToClipboard('${book.baiduLink}')">复制试看链接</p>
+            </div>
+          </div>
+        `;
+
+        contentDiv.appendChild(box);
+      });
+
+      // 更新分页按钮的状态
+      document.getElementById("firstPage").disabled = currentPage === 1;
+      document.getElementById("prevPage").disabled = currentPage === 1;
+      document.getElementById("nextPage").disabled = currentPage === totalPages;
+      document.getElementById("lastPage").disabled = currentPage === totalPages;
+    }
+
+    // 跳转到指定页的函数
+    function goToPage(page) {
+      if (page < 1 || page > totalPages) return; // 防止越界
+
+      currentPage = page;
+      filterBooks();
+    }
+
+    // 初始化页面时显示第一页
+    let totalPages = 1;
+    filterBooks();
   </script>
 </body>
 </html>
