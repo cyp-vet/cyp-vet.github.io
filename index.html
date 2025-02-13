@@ -276,7 +276,14 @@
       document.getElementById("nextPage").disabled = currentPage === totalPages;
       document.getElementById("lastPage").disabled = currentPage === totalPages;
     }
-
+    // 复制链接的函数
+    function copyToClipboard(link) {
+      navigator.clipboard.writeText(link).then(() => {
+        alert('已复制链接，快去打开百度网盘app吧！');
+      }).catch(err => {
+        console.error('复制失败', err);
+      });
+    }
     // 跳转到指定页的函数
     function goToPage(page) {
       if (page < 1 || page > totalPages) return; // 防止越界
