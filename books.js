@@ -16,6 +16,15 @@ const books = [
     "date": "2020",
     "language": "English",
     "baiduLink": "通过网盘分享的文件：Preview 链接: https://pan.baidu.com/s/1OFiWJ_6iI6eOqllkML7gWQ?pwd=qt6i 提取码: qt6i",
+  },
+  {
+    "image": "3001.png",
+    "number": "3001",
+    "category": "兽医诊断与实验技术",
+    "title": "犬猫临床心脏超音波 - 翻译版",
+    "date": "2025",
+    "language": "简体中文",
+    "baiduLink": "通过网盘分享的文件：Preview 链接: https://pan.baidu.com/s/180Yv2aM4DbWZuv6uK9fztA?pwd=9xkj 提取码: 9xkj",
   }
 
   ]
