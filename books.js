@@ -34,6 +34,15 @@ const books = [
     "date": "2019",
     "language": "简体中文",
     "baiduLink": "通过网盘分享的文件：Preview 链接: https://pan.baidu.com/s/1WfMhbc82cm55JWU-VLymow?pwd=fgmj 提取码: fgmj",
+  },
+  {
+    "image": "204.png",
+    "number": "204",
+    "category": "临床兽医学",
+    "title": "犬猫临床血液生化学 第二版",
+    "date": "2025",
+    "language": "简体中文",
+    "baiduLink": "通过百度网盘分享的文件链接: https://pan.baidu.com/s/11HEPvE_E1yKeDF6wG6O1oQ?pwd=wkgk 提取码: wkgk",
   }
 
   ]
