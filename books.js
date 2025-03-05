@@ -52,6 +52,15 @@ const books = [
     "date": "2016",
     "language": "中文繁体",
     "baiduLink": "通过百度网盘分享的文件链接: https://pan.baidu.com/s/1dou4cydGP6N8ZVQ4QoWeg?pwd=x46k 提取码: x46k",
+  },
+  {
+    "image": "206.png",
+    "number": "206",
+    "category": "临床兽医学",
+    "title": "猫博士的猫病学 第二版",
+    "date": "2018",
+    "language": "中文简体",
+    "baiduLink": "通过百度网盘分享的文件链接: https://pan.baidu.com/s/140MjefXsavLNj6GY_mY9Jg?pwd=q9h5 提取码: q9h5",
   }
 
   ]
