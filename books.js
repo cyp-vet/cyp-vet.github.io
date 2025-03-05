@@ -43,6 +43,15 @@ const books = [
     "date": "2025",
     "language": "简体中文",
     "baiduLink": "通过百度网盘分享的文件链接: https://pan.baidu.com/s/11HEPvE_E1yKeDF6wG6O1oQ?pwd=wkgk 提取码: wkgk",
+  },
+  {
+    "image": "205.png",
+    "number": "205",
+    "category": "临床兽医学",
+    "title": "犬猫骨折修复与处置手册 第二版",
+    "date": "2016",
+    "language": "中文繁体",
+    "baiduLink": "通过百度网盘分享的文件链接: https://pan.baidu.com/s/1dou4cydGP6N8ZVQ4QoWeg?pwd=x46k 提取码: x46k",
   }
 
   ]
