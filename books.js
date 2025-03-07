@@ -61,6 +61,15 @@ const books = [
     "date": "2018",
     "language": "中文简体",
     "baiduLink": "通过百度网盘分享的文件链接: https://pan.baidu.com/s/140MjefXsavLNj6GY_mY9Jg?pwd=q9h5 提取码: q9h5",
+  },
+  {
+    "image": "207.png",
+    "number": "207",
+    "category": "临床兽医学",
+    "title": "伴侣动物心血管疾病 第二版",
+    "date": "2025",
+    "language": "中文简体",
+    "baiduLink": "通过百度网盘分享的文件链接: https://pan.baidu.com/s/1SfNp8rhZiyGgmfLqKMmug?pwd=jrbt 提取码: jrbt",
   }
 
   ]
